@@ -10,7 +10,7 @@
 class User
 {
 private:
-	std::string username_, email_, password_, user_type_;
+	std::string name_, username_, email_, password_, user_type_;
 
 public:
 	User(std::string name="empty",
