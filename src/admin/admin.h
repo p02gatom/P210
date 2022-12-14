@@ -16,8 +16,8 @@ class Admin : public registered_user
 		Admin();	// constructor
 
 		bool delete_account();
-		bool create_account();
-		void validate_account();
+		bool create_account(); //añadir directamente al fichero
+		void validate_account(); // podriamos quitarla
 		void modify_account();
 }
 

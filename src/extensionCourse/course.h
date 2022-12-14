@@ -5,6 +5,7 @@
 #define EXTCOURSE_H
 
 #include <string>
+#include "resources.h"
 
 struct Date { // creo que podriamos usar una libreria propia para date
     int day;
@@ -20,6 +21,7 @@ class Ext_Course
 		struct Date start_date_, end_date_; 
 		int students_, available_places_, max_places_;
 		bool availability_;
+		Resources resource; // recursos asignados para cada objeto curso creado
 
 	public:
 
