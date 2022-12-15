@@ -1,7 +1,4 @@
 #include"course.h"
-.
-.
-.
 #include "student.h"
 
 #include<iostream>
@@ -9,29 +6,37 @@
 
 int main()
 {
-	std::cout << "Introduce 1 para INICIAR SESION con tu cuenta en el sistema." << std::endl;
-	std::cout << "Introduce 2 si no dispones de cuenta para REGISTRARTE en el sistema." << std::endl;
-	std::cout << "Introduce 3 si deseas SALIR"
+	std::cout << "Bienvenido a la plataforma de Cursos de Extensión de la UCO" << std::endl;
+	std::cout << "Introduzca 1 para INICIAR SESION con su cuenta en el sistema" << std::endl;
+	std::cout << "Introduzca 2 para REGISTRARTE si no dispone de cuenta en el sistema" << std::endl;
+	std::cout << "Introduzca 3 para ACCEDER COMO INVITADO" << std::endl;
+	std::cout << "Introduzca 4 si desea SALIR" << std::endl;
 	int option;
-	cin >> option;
+	
+	while(1) {
 
-	switch(option)
-	{
-		case 1: // INICIAR SESION
+		std::cin >> option;
 
-		if( inicio_sesion() )
+		switch(option)
 		{
-			if() // si userType
+			case 1: // INICIAR SESION
+
+		
+
+			case 2: // REGISTRARTE
+
+
+
+			break;
+
+			case 3: // SALIR
+
+				std::cout << "Gracias por su atención."
+				return 0;
+
+			break;
+
+			default:
+			std::cout << "Elección no válida.\nInténtelo de nuevo:" <<std::endl;
 		}
-		break;
-		case 2: // REGISTRARTE
-
-
-		break;
-		case 3: // SALIR
-
-
-		break;
-		defeult:
 	}
-}
