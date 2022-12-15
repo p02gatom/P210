@@ -8,7 +8,7 @@
 #include <vector>
 #include "resources.h"
 
-struct Date { // creo que podriamos usar una libreria propia para date
+struct Date { 
     int day;
     int month;
     int year;
@@ -19,7 +19,7 @@ class Ext_Course
 	private:
 
 		std::string name_, description_, asigned_coordinator_, asigned_rcoordinator_;
-		struct Date start_date_, end_date_;
+		Date start_date_, end_date_;
 		int available_places_, max_places_;
 		std::vector <std::string> students_vector; // vector con el nombre de los estudiantes
 		bool availability_;
@@ -31,8 +31,8 @@ class Ext_Course
 					std::string description="empty",
 					std::string asigned_coordinator="empty",
 					std::string asigned_rcoordinator="empty",
-					struct Date start_date,
-					struct Date end_date,	
+					Date start_date,
+					Date end_date,	
 					bool availability = true,
 					int available_places = 0,
 					int max_places = 0);
