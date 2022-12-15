@@ -13,7 +13,7 @@ class Student : public Registered_user
 
 	public:
 
-		singup_course
+		void singup_course();
 
 }
 

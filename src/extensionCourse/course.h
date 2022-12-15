@@ -5,6 +5,7 @@
 #define EXTCOURSE_H
 
 #include <string>
+#include <vector>
 #include "resources.h"
 
 struct Date { // creo que podriamos usar una libreria propia para date
@@ -18,10 +19,11 @@ class Ext_Course
 	private:
 
 		std::string name_, description_, asigned_coordinator_, asigned_rcoordinator_;
-		struct Date start_date_, end_date_; 
-		int students_, available_places_, max_places_;
+		struct Date start_date_, end_date_;
+		int available_places_, max_places_;
+		std::vector <std::string> students_vector; // vector con el nombre de los estudiantes
 		bool availability_;
-		Resources resource; // recursos asignados para cada objeto curso creado
+		Resources resources_; // recursos asignados para cada objeto curso creado
 
 	public:
 
@@ -30,13 +32,12 @@ class Ext_Course
 					std::string asigned_coordinator="empty",
 					std::string asigned_rcoordinator="empty",
 					struct Date start_date,
-					struct Date end_date,
-					int students = 0,
+					struct Date end_date,	
 					bool availability = true,
 					int available_places = 0,
 					int max_places = 0);
 
-		//getters
+	//getters
 		inline std::string get_name() {return name_;}
 		inline std::string get_description() {return description_;}
 		inline std::string get_asigned_coordinator() {return asigned_coordinator_;}
@@ -47,8 +48,14 @@ class Ext_Course
 		inline bool get_availability() {return availability_;}
 		inline int get_available_places() {return available_places_;}
 		inline int get_max_places() {return max_places_;}
+				// de la clase Resources
+		inline std::string get_material(){ return resources_.get_material(); }
+		inline std::string get_classroom(){ return resources_.get_classroom(); }
+		inline float get_budget(){ return resources_.get_budget(); }
+		inline std::string get_full_resources(){ return resources_.get_full_resources(); }
 
-		//setters
+
+	//setters
 		inline void set_name(std::string name) {name_=name;}
 		inline void set_description(std::string description) {description_=description;}
 		inline void set_asigned_coordinator(std::string asigned_coordinator) {asigned_coordinator_=asigned_coordinator;}
@@ -58,6 +65,10 @@ class Ext_Course
 		bool set_available_places(bool availability, int max_places, int available_places);
 		inline void set_available_places(int available_places) {available_places_=available_places;}
 		inline void set_max_places(int max_places) {max_places_=max_places;}
+				// de la clase Resources
+		inline void set_material(std::string material){ resources_.set_material(material); }
+		inline void set_budget(float budget){ resources_.set_budget(budget); }
+		inline void set_classroom(std::string classroom){ resources_.set_classroom(classroom); }
 
 };
 

@@ -7,7 +7,7 @@
 #include "registered_user.h"
 #include <string>
 
-class Admin : public registered_user
+class Admin : public Registered_user
 {
 	private:
 

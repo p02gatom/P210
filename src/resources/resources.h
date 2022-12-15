@@ -20,15 +20,15 @@ class Resources :
 		// constructor
 
 		//setters
-		void set_material(std::string material){ material_ = material;}
-		void set_budget(float budget){ budget_ = budget;}
-		void set_classroom(std::string classroom_){ classroom_ = classroom;}
+		inline void set_material(std::string material){ material_ = material;}
+		inline void set_budget(float budget){ budget_ = budget;}
+		inline void set_classroom(std::string classroom){ classroom_ = classroom;}
 
 		//getters
-		std::string get_material() const { return material_;}
-		float get_budget() const { return budget_;}
-		std::string get_classroom() const { return classroom_;}
-		std::string get_full_resources(){ return material_ + "\n" + budget_ + "\n" + classroom_ ; }
+		inline std::string get_material() const { return material_;}
+		inline float get_budget() const { return budget_;}
+		inline std::string get_classroom() const { return classroom_;}
+		inline std::string get_full_resources(){ return material_ + "\n" + budget_ + "\n" + classroom_ ; } // concatenacion de todos los recursos
 }
 
 #endif // RESOURCES_H
