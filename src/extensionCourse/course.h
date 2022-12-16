@@ -46,7 +46,7 @@ class Ext_Course
 		inline std::string get_asigned_rcoordinator() {return asigned_rcoordinator_;}
 		inline struct Date get_start_date() {return start_date_;}
 		inline struct Date get_end_date() {return end_date_;}
-		inline int get_students() {return students;}
+		inline int get_students() {return students_;}
 		inline bool get_availability() {return availability_;}
 		inline int get_available_places() {return available_places_;}
 		inline int get_max_places() {return max_places_;}
