@@ -43,30 +43,62 @@ bool Course::set_available_places(bool availability, int max_places, int availab
 	}
 }
 
-bool Ext_course::add_student(std::string student)
+bool Ext_course::add_student(std::string mail)
 {
-	for(int i = 0; student_vector_.size(); i++)
+	if(availability_ == false) // si el curso no esta disponible
 	{
-		if (student_vector_[i] == student) return false;
+		std::cout << "El curso seleccionado esta completo, prueba a elegir otros" << std::endl;
+		return false;
 	} 
-	else {
-		student_vector_.push_back(student);
-		return true;
+	else 
+	{
+		for(auto it=student_list.begin(); it!=student_list.end(); it++)
+			if (it->get_email() == mail) // el usuario ya se encuentra inscrito en el curso
+			{
+				std::cout << "Ya estás inscrito en este curso." << std::endl;
+				return false;
+			} 
+		
+		else {
+			student_list_.push_back(student); // paso el objeto student
+		}
+		if(student_vector_.size() == max_places_) set
 	}
 }
 
 bool Ext_course::delete_student(std::string student)
 {
-	for(int i = 0; student_vector_.size(); i++)
+	if(student_vector_.size() >= max_places_) return false;
+	else
 	{
-		if (student_vector_[i] == student) return false;
-	} 
-	else {
-		student_vector_.erase(student_vector_.begin() + i);
-		return true;
+		for(int i = 0; student_vector_.size(); i++)
+		{
+			if (student_vector_[i] == student) return false;
+			else
+			{ student_vector_.erase(student_vector_.begin() + i); }
+		} 
 	}
+	return true;
 }
 
+void fichero_a_lista_students_curso()
+{
+
+	std::ifstream file(get_name() + ".txt");
+
+	if (file.is_open()) 
+	{
+		std::string name, email; 
+
+		while (file >> name >> std::endl>> email) 
+		{
+			User user(name, " ", email);
+			student_list_.push_back(user);
+		}
+
+		file.close();
+	}
+}
 
 
 

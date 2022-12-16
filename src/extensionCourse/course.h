@@ -8,6 +8,7 @@
 #include <vector>
 #include <iostream>
 #include "resources.h"
+#include "student.h"
 
 struct Date { 
     int day;
@@ -22,7 +23,7 @@ class Ext_Course
 		std::string name_, description_, asigned_coordinator_, asigned_rcoordinator_;
 		Date start_date_, end_date_;
 		int available_places_, max_places_;
-		std::vector <std::string> students_vector_; // vector con el mail de los estudiantes (podriamos establecer de primeras el tmñ = max_places_)
+		std::list <Student> student_list_; // lista de objetos Student
 		bool availability_;
 		Resources resources_; // recursos asignados para cada objeto curso creado
 
@@ -72,9 +73,11 @@ class Ext_Course
 		inline void set_classroom(std::string classroom){ resources_.set_classroom(classroom); }
 
 		bool add_student(std::string student);
-		void delete_student(std::string student);
+		bool delete_student(std::string student);
 
-		
+		void fichero_a_lista_cursos()
+
+
 
 };
 
