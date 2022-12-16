@@ -43,6 +43,30 @@ bool Course::set_available_places(bool availability, int max_places, int availab
 	}
 }
 
+bool Ext_course::add_student(std::string student)
+{
+	for(int i = 0; student_vector_.size(); i++)
+	{
+		if (student_vector_[i] == student) return false;
+	} 
+	else {
+		student_vector_.push_back(student);
+		return true;
+	}
+}
+
+bool Ext_course::delete_student(std::string student)
+{
+	for(int i = 0; student_vector_.size(); i++)
+	{
+		if (student_vector_[i] == student) return false;
+	} 
+	else {
+		student_vector_.erase(student_vector_.begin() + i);
+		return true;
+	}
+}
+
 
 
 
