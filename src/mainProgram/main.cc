@@ -1,8 +1,15 @@
-#include"course.h"
-#include "student.h"
+#include "src/admin/admin.h"
+#include "src/courseList/course_list.h"
+#include "src/extensionCourse/course.h"
+#include "src/registeredUser/registered_user.h"
+#include "src/resources/resources.h"
+#include "src/student/student.h"
+#include "src/mainProgram/funciones.h"
 
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <list>
 
 int main()
 {
