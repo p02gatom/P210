@@ -5,7 +5,7 @@
 #define USER_H
 
 #include <string>
-
+#include <list>
 
 class User
 {
@@ -39,6 +39,7 @@ class User
 		inline void set_email(std::string email) {email_=email;}
 		inline void set_password(std::string password) {password_=password;}
 		inline void set_user_type(std::string user_type) {user_type_=user_type;}
+		std::string log_in(std::list<User> users);
 
 };
 
