@@ -139,7 +139,7 @@ void sign_up(std::list<User> &users)
 
         default:
             std::cout << "Error: No ha escogido una opción válida" << std::endl;
-            break;
+            
         }
     }
     User user(name, username, email, password, user_type);
