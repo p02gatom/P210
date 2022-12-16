@@ -24,7 +24,7 @@ void load_users_database(std::list<User> &users)
     }
 }
 
-void save_users_database(std::list<User> &users)
+void save_users_database(std::list<User> users)
 {
     std::ofstream file("users.txt");
 
