@@ -13,6 +13,8 @@
 
 int main()
 {
+	std::list<User> users;
+	load_users_database(users);
 	std::cout << "Bienvenido a la plataforma de Cursos de Extensión de la UCO" << std::endl;
 	std::cout << "Introduzca 1 para INICIAR SESION con su cuenta en el sistema" << std::endl;
 	std::cout << "Introduzca 2 para REGISTRARTE si no dispone de cuenta en el sistema" << std::endl;
@@ -38,7 +40,7 @@ int main()
 
 			case 3: // SALIR
 
-				std::cout << "Gracias por su atención."
+				std::cout << "Gracias por su atención." << std::endl;;
 				return 0;
 
 			break;
