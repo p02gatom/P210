@@ -17,35 +17,43 @@ int main()
 	load_users_database(users);
 	std::cout << "Bienvenido a la plataforma de Cursos de Extensión de la UCO" << std::endl;
 	std::cout << "Introduzca 1 para INICIAR SESION con su cuenta en el sistema" << std::endl;
-	std::cout << "Introduzca 2 para REGISTRARTE si no dispone de cuenta en el sistema" << std::endl;
+	std::cout << "Introduzca 2 para REGISTRARSE si no dispone de cuenta en el sistema" << std::endl;
 	std::cout << "Introduzca 3 para ACCEDER COMO INVITADO" << std::endl;
 	std::cout << "Introduzca 4 si desea SALIR" << std::endl;
 	int option;
-	
-	while(1) {
+
+	while (1)
+	{
 
 		std::cin >> option;
 
-		switch(option)
+		switch (option)
 		{
-			case 1: // INICIAR SESION
+		case 1: // INICIAR SESION
 
-		
+			log_in(users);
 
-			case 2: // REGISTRARTE
+		break;
 
+		case 2: // REGISTRARTE
 
+			sign_up(users);
 
-			break;
+		break;
 
-			case 3: // SALIR
+		case 3: // ACCESO COMO INVITADO
 
-				std::cout << "Gracias por su atención." << std::endl;;
-				return 0;
+		break;
 
-			break;
+		case 4: // SALIR
 
-			default:
-			std::cout << "Elección no válida.\nInténtelo de nuevo:" <<std::endl;
+			std::cout << "Gracias por su atención." << std::endl;
+
+			return 0;
+
+		break;
+
+		default:
+			std::cout << "Elección no válida.\nInténtelo de nuevo:" << std::endl;
 		}
 	}
