@@ -26,7 +26,7 @@ class Student : public Registered_user{
 
 	bool singup_course(std::string c1, std::list <Ext_Course> course_list);
 	void modify_student(Student s);
-	bool delete_student(Student s);
+	void delete_student(Student s);
 	std::list <Ext_Course> get_course_list();
 	std::list <Ext_Course> get_mycourses();
 	
