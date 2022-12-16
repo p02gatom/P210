@@ -12,6 +12,7 @@
 class Student : public Registered_user{
 
 	private:
+		std::vector <std::string> asigned_courses_;
 
 	public:
 
