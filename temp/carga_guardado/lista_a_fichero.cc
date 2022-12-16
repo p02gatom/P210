@@ -27,7 +27,7 @@ int main() {
 			password = it->get_password();
 			user_type = it->get_user_type();
 
-			file << name << " " << username << " " << email << " " << password << " " << user_type << std::endl;
+			file << name << std::endl << username << " " << email << " " << password << " " << user_type << std::endl;
 
 		}
 

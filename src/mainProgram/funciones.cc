@@ -2,7 +2,55 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <fstream>
 #include "registeredUser/registered_user.h"
+
+void load_users_database(std::list<User> &users)
+{
+    std::ifstream file("users.txt");
+
+    if (file.is_open())
+    {
+
+        std::string name, username, email, password, user_type;
+
+        while (file >> name >> username >> email >> password >> user_type)
+        {
+            User user(name, username, email, password, user_type);
+            users.push_back(user);
+        }
+
+        file.close();
+    }
+}
+
+void save_users_database(std::list<User> &users)
+{
+    std::ofstream file("users.txt");
+
+	if (file.is_open())
+	{
+		std::string name, username, email, password, user_type;
+
+		std::list<User>::iterator it;
+    	for (it = users.begin(); it != users.end(); ++it) {
+			
+			name = it->get_name();
+			username = it->get_username();
+			email = it->get_email();
+			password = it->get_password();
+			user_type = it->get_user_type();
+
+			file << name << std::endl << username << " " << email << " " << password << " " << user_type << std::endl;
+
+		}
+
+		file.close();
+
+	} else {
+        std::cout << "Unable to open file" << std::endl;
+    }
+}
 
 User log_in(std::list<User> users)
 {
@@ -139,7 +187,6 @@ void sign_up(std::list<User> &users)
 
         default:
             std::cout << "Error: No ha escogido una opción válida" << std::endl;
-            
         }
     }
     User user(name, username, email, password, user_type);
