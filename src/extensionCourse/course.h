@@ -55,6 +55,7 @@ class Ext_Course
 		inline std::string get_classroom(){ return resources_.get_classroom(); }
 		inline float get_budget(){ return resources_.get_budget(); }
 		inline std::string get_full_resources(){ return resources_.get_full_resources(); }
+		inline std::list <Student> get_student_list(){return product_list_;}
 
 
 	//setters
