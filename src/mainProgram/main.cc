@@ -43,6 +43,11 @@ int main()
 
 		case 3: // ACCESO COMO INVITADO
 
+			std::cout << "Bienvenido.\nHa accedido usted como invitado." << std::endl;
+			std::cout << "Escriba 1 para ver todos los cursos disponibles en la plataforma" << std::endl;
+
+
+
 		break;
 
 		case 4: // SALIR
