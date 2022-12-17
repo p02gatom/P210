@@ -7,8 +7,9 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "resources.h"
-#include "student.h"
+#include <list>
+#include "src/resources/resources.h"
+#include "src/student/student.h"
 
 struct Date { 
     int day;
@@ -16,7 +17,7 @@ struct Date {
     int year;
 };
 
-class Ext_Course
+class Ext_Course : public Student, public Resources
 {
 	private:
 
@@ -37,6 +38,8 @@ class Ext_Course
 					Date end_date,	
 					bool availability = true,
 					int available_places = 0,
+					std::list<Student> student_list=NULL,
+					Resources resources,
 					int max_places = 0);
 
 	//getters
@@ -46,7 +49,7 @@ class Ext_Course
 		inline std::string get_asigned_rcoordinator() {return asigned_rcoordinator_;}
 		inline struct Date get_start_date() {return start_date_;}
 		inline struct Date get_end_date() {return end_date_;}
-		inline int get_students() {return students_;}
+		inline std::list<Student> get_student_list() {return student_list_;}
 		inline bool get_availability() {return availability_;}
 		inline int get_available_places() {return available_places_;}
 		inline int get_max_places() {return max_places_;}
@@ -55,7 +58,7 @@ class Ext_Course
 		inline std::string get_classroom(){ return resources_.get_classroom(); }
 		inline float get_budget(){ return resources_.get_budget(); }
 		inline std::string get_full_resources(){ return resources_.get_full_resources(); }
-		inline std::list <Student> get_student_list(){return product_list_;}
+
 
 
 	//setters
@@ -64,7 +67,7 @@ class Ext_Course
 		inline void set_asigned_coordinator(std::string asigned_coordinator) {asigned_coordinator_=asigned_coordinator;}
 		inline void set_start_date(struct Date start_date) {start_date_=start_date;}
 		inline void set_end_date(struct Date end_date) {end_date_=end_date;}
-		inline void set_students(int students) {students_=students;}
+		inline void set_student_list(std::list<Student> student_list) {student_list_=student_list;}
 		bool set_available_places(bool availability, int max_places, int available_places);
 		inline void set_available_places(int available_places) {available_places_=available_places;}
 		inline void set_max_places(int max_places) {max_places_=max_places;}

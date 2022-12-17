@@ -3,7 +3,9 @@
 #include <string>
 #include <list>
 #include <fstream>
-#include "registeredUser/registered_user.h"
+#include "src/registeredUser/registered_user.h"
+#include "src/extensionCourse/course.h"
+#include "src/resources/resources.h"
 
 void load_users_database(std::list<User> &users)
 {
@@ -28,28 +30,97 @@ void save_users_database(std::list<User> users)
 {
     std::ofstream file("users.txt");
 
-	if (file.is_open())
-	{
-		std::string name, username, email, password, user_type;
+    if (file.is_open())
+    {
+        std::string name, username, email, password, user_type;
 
-		std::list<User>::iterator it;
-    	for (it = users.begin(); it != users.end(); ++it) {
-			
-			name = it->get_name();
-			username = it->get_username();
-			email = it->get_email();
-			password = it->get_password();
-			user_type = it->get_user_type();
+        std::list<User>::iterator it;
+        for (it = users.begin(); it != users.end(); ++it)
+        {
 
-			file << name << std::endl << username << " " << email << " " << password << " " << user_type << std::endl;
+            name = it->get_name();
+            username = it->get_username();
+            email = it->get_email();
+            password = it->get_password();
+            user_type = it->get_user_type();
 
-		}
+            file << name << std::endl
+                 << username << " " << email << " " << password << " " << user_type << std::endl;
+        }
 
-		file.close();
-
-	} else {
+        file.close();
+    }
+    else
+    {
         std::cout << "Unable to open file" << std::endl;
     }
+}
+
+void load_courses_database(std::list<Ext_Course> &courses, std::list<Student> students)
+{
+    std::ifstream file("courses.txt");
+
+    if (file.is_open())
+    {
+        std::string name, description, asigned_coordinator, asigned_rcoordinator, fecha;
+        Date start_date, end_date;
+        bool availability;
+        int available_places, max_places;
+        Resources resources;
+        getline(file, name);
+        getline(file, description);
+        getline(file, asigned_coordinator);
+        getline(file, asigned_rcoordinator);
+        getline(file, fecha);
+        std::size_t pos1 = fecha.find(" ");
+        std::size_t pos2 = fecha.find("/");
+        std::size_t pos3 = fecha.find("/", pos2 + 1);
+
+        start_date.day = std::stoi(fecha.substr(pos1 + 1, pos2 - 1));
+        start_date.month = std::stoi(fecha.substr(pos2 + 1, pos3 - 1));
+        start_date.year = std::stoi(fecha.substr(pos3 + 1));
+
+        getline(file, fecha);
+        std::size_t pos1 = fecha.find(" ");
+        std::size_t pos2 = fecha.find("/");
+        std::size_t pos3 = fecha.find("/", pos2 + 1);
+
+        end_date.day = std::stoi(fecha.substr(pos1 + 1, pos2 - 1));
+        end_date.month = std::stoi(fecha.substr(pos2 + 1, pos3 - 1));
+        end_date.year = std::stoi(fecha.substr(pos3 + 1));
+
+        getline(file, fecha);
+        std::size_t pos = fecha.find(" ");
+        std::string value = fecha.substr(pos + 1);
+        if (value == "true")
+        {
+            availability = true;
+        }
+        else
+        {
+            availability = false;
+        }
+
+        getline(file, fecha);
+        std::size_t pos = fecha.find(" ");
+        available_places = std::stoi(fecha.substr(0, pos));
+        max_places = std::stoi(fecha.substr(pos + 1));
+        getline(file, fecha);
+        std::size_t pos1 = fecha.find(" ");
+        std::size_t pos2 = fecha.find(" ", pos1 + 1);
+        resources.set_material(fecha.substr(0, pos1));
+        resources.set_budget(std::stoi(fecha.substr(pos1 + 1, pos2 - 1)));
+        resources.set_classroom(fecha.substr(pos2 + 1));
+
+        Ext_Course course(name, description, asigned_coordinator, asigned_rcoordinator, start_date, end_date, availability, available_places, students, resources, max_places);
+    }
+    else
+    {
+        std::cout << "Unable to open file" << std::endl;
+    }
+
+    file.close();
+}
 }
 
 User log_in(std::list<User> users)
@@ -192,4 +263,10 @@ void sign_up(std::list<User> &users)
     User user(name, username, email, password, user_type);
     users.push_back(user);
     std::cout << "Enhorabuena, acaba usted de registrarse exitosamente." << std::endl;
+}
+
+void print_courses_list()
+{
+
+    std::
 }

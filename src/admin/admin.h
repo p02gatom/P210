@@ -4,10 +4,10 @@
 #ifndef ADMIN_H
 #define ADMIN_H
 
-#include "registered_user.h"
+#include "src/registeredUser/registered_user.h"
 #include <string>
 
-class Admin : public Registered_user
+class Admin : public User
 {
 	private:
 
@@ -21,4 +21,4 @@ class Admin : public Registered_user
 		void modify_account();
 }
 
-#endif // ADMIN_H
+#endif //ADMIN_H

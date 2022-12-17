@@ -1,5 +1,4 @@
 #include "src/admin/admin.h"
-#include "src/courseList/course_list.h"
 #include "src/extensionCourse/course.h"
 #include "src/registeredUser/registered_user.h"
 #include "src/resources/resources.h"
