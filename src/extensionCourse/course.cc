@@ -1,15 +1,16 @@
 //course.cc
-// Definición de Course en el fichero.cc
+// Definición de Ext_Course en el fichero.cc
 
-#include "course.h"
+#include "src/extensionCourse/course.h"
+#include "src/student/student.h"
 #include <string>
 
 
-Course::Course(std::string name, std::string description, std::string asigned_coordinator, 
+Ext_Course Course(std::string name, std::string description, std::string asigned_coordinator, 
 			std::string asigned_rcoordinator, Date start_date, Date end_date,
-			int max_places, int students, bool availability, int available_places)
+			int max_places, std::list<Student> students, bool availability, int available_places)
 {
-	name_=name;
+	/* name_=name;
 	description_=description;
 	asigned_coordinator_=asigned_coordinator;
 	asigned_rcoordinator_=asigned_rcoordinator;
@@ -24,22 +25,21 @@ Course::Course(std::string name, std::string description, std::string asigned_co
 	max_places_=max_places;
 	students_=students;
 	availability_=availability;
-	available_places_=available_places;
+	available_places_=available_places; */
 	
 
-	if(max_places > available_places) availability_=availability;
-	else availability_= false;
+	if(max_places > available_places) availability_=true;
+	
 }	
 
-bool Course::set_available_places(bool availability, int max_places, int available_places)
+int Ext_Course::set_available_places(int max_places, int available_places)
 {
 	if (max_places > available_places)
 	{
-		availability_=availability;
-		return true;
+		available_places_=available_places;
 	}
 	else {
-		return false;
+		std::cout<<"Error: No puede superar el aforo"<<std::endl;
 	}
 }
 
@@ -84,19 +84,23 @@ bool Ext_course::delete_student(std::string student)
 void fichero_a_lista_students_curso()
 {
 
-	std::ifstream file(get_name() + ".txt");
+	std::ifstream file(get_name() + "_lista.txt");
 
 	if (file.is_open()) 
 	{
 		std::string name, email; 
 
-		while (file >> name >> std::endl>> email) 
+		while (getline(file, name)) 
 		{
-			User user(name, " ", email);
-			student_list_.push_back(user);
+			getline(file, email);
+			Student student(name, " ", email);
+			student_list_.push_back(student);
 		}
-
 		file.close();
+	} else {
+
+		std::cout<<"Error en la apertura del fichero";
+
 	}
 }
 
