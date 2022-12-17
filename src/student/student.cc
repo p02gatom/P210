@@ -98,7 +98,19 @@ void Student::delete_student(Student s){
     delete s;
 }
 
-std::list <Ext_Course> Student::get_course_list(){
+void Student::get_mycourses(Student s){
 
+    for(auto it=course_list.begin();it!=course_list.end();it++){
 
+        for(auto it2=students_list_.begin();it2!=students_list_.end();it2++){
+
+            if(s==it2->get_student()){
+
+                std::cout<<course_list.get_name();
+            }
+
+        }
+
+    }
+    
 }
