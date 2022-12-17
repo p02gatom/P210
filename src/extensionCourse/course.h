@@ -38,7 +38,7 @@ class Ext_Course : public Student, public Resources
 					Date end_date,	
 					bool availability = true,
 					int available_places = 0,
-					std::list<Student> student_list=NULL,
+					std::list<Student> student_list,
 					Resources resources,
 					int max_places = 0);
 
