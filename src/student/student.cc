@@ -6,11 +6,11 @@
 #include "student.h"
 #include "registered_user.h"
 
-bool Student::singup_course(std::string c1, std::list <Ext_Course> course_list){
+bool Student::singup_course(std::string c1, std::list <Ext_Course> &course_list){
 
     for(auto it=course_list.begin();it!=course_list.end();it++){
 
-        if(it->course_list==c1){
+        if(it->course_list.get_name()==c1){
 
             if(it->get_availability()==true){
                 

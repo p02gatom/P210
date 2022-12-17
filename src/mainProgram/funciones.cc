@@ -56,10 +56,10 @@ void save_users_database(std::list<User> users)
     }
 }
 
-void load_courses_database(std::list<Ext_Course> &courses, std::list<Student> students)
+void load_courses_database(std::list<Ext_Course> &courses)
 {
     std::ifstream file("courses.txt");
-
+    std::list<Student> students;
     if (file.is_open())
     {
         std::string name, description, asigned_coordinator, asigned_rcoordinator, fecha;
@@ -67,52 +67,54 @@ void load_courses_database(std::list<Ext_Course> &courses, std::list<Student> st
         bool availability;
         int available_places, max_places;
         Resources resources;
-        getline(file, name);
-        getline(file, description);
-        getline(file, asigned_coordinator);
-        getline(file, asigned_rcoordinator);
-        getline(file, fecha);
-        std::size_t pos1 = fecha.find(" ");
-        std::size_t pos2 = fecha.find("/");
-        std::size_t pos3 = fecha.find("/", pos2 + 1);
-
-        start_date.day = std::stoi(fecha.substr(pos1 + 1, pos2 - 1));
-        start_date.month = std::stoi(fecha.substr(pos2 + 1, pos3 - 1));
-        start_date.year = std::stoi(fecha.substr(pos3 + 1));
-
-        getline(file, fecha);
-        std::size_t pos1 = fecha.find(" ");
-        std::size_t pos2 = fecha.find("/");
-        std::size_t pos3 = fecha.find("/", pos2 + 1);
-
-        end_date.day = std::stoi(fecha.substr(pos1 + 1, pos2 - 1));
-        end_date.month = std::stoi(fecha.substr(pos2 + 1, pos3 - 1));
-        end_date.year = std::stoi(fecha.substr(pos3 + 1));
-
-        getline(file, fecha);
-        std::size_t pos = fecha.find(" ");
-        std::string value = fecha.substr(pos + 1);
-        if (value == "true")
+        while (getline(file, name))
         {
-            availability = true;
-        }
-        else
-        {
-            availability = false;
-        }
+            getline(file, description);
+            getline(file, asigned_coordinator);
+            getline(file, asigned_rcoordinator);
+            getline(file, fecha);
+            std::size_t pos1 = fecha.find(" ");
+            std::size_t pos2 = fecha.find("/");
+            std::size_t pos3 = fecha.find("/", pos2 + 1);
 
-        getline(file, fecha);
-        std::size_t pos = fecha.find(" ");
-        available_places = std::stoi(fecha.substr(0, pos));
-        max_places = std::stoi(fecha.substr(pos + 1));
-        getline(file, fecha);
-        std::size_t pos1 = fecha.find(" ");
-        std::size_t pos2 = fecha.find(" ", pos1 + 1);
-        resources.set_material(fecha.substr(0, pos1));
-        resources.set_budget(std::stoi(fecha.substr(pos1 + 1, pos2 - 1)));
-        resources.set_classroom(fecha.substr(pos2 + 1));
+            start_date.day = std::stoi(fecha.substr(pos1 + 1, pos2 - 1));
+            start_date.month = std::stoi(fecha.substr(pos2 + 1, pos3 - 1));
+            start_date.year = std::stoi(fecha.substr(pos3 + 1));
 
+            getline(file, fecha);
+            std::size_t pos1 = fecha.find(" ");
+            std::size_t pos2 = fecha.find("/");
+            std::size_t pos3 = fecha.find("/", pos2 + 1);
+
+            end_date.day = std::stoi(fecha.substr(pos1 + 1, pos2 - 1));
+            end_date.month = std::stoi(fecha.substr(pos2 + 1, pos3 - 1));
+            end_date.year = std::stoi(fecha.substr(pos3 + 1));
+
+            getline(file, fecha);
+            std::size_t pos = fecha.find(" ");
+            std::string value = fecha.substr(pos + 1);
+            if (value == "true")
+            {
+                availability = true;
+            }
+            else
+            {
+                availability = false;
+            }
+
+            getline(file, fecha);
+            std::size_t pos = fecha.find(" ");
+            available_places = std::stoi(fecha.substr(0, pos));
+            max_places = std::stoi(fecha.substr(pos + 1));
+            getline(file, fecha);
+            std::size_t pos1 = fecha.find(" ");
+            std::size_t pos2 = fecha.find(" ", pos1 + 1);
+            resources.set_material(fecha.substr(0, pos1));
+            resources.set_budget(std::stoi(fecha.substr(pos1 + 1, pos2 - 1)));
+            resources.set_classroom(fecha.substr(pos2 + 1));
+        }
         Ext_Course course(name, description, asigned_coordinator, asigned_rcoordinator, start_date, end_date, availability, available_places, students, resources, max_places);
+        courses.push_back(course);
     }
     else
     {
@@ -121,6 +123,43 @@ void load_courses_database(std::list<Ext_Course> &courses, std::list<Student> st
 
     file.close();
 }
+
+void save_courses_database(std::list<Ext_Course> courses, std::list<Student> students)
+{
+    std::ofstream file("courses.txt");
+
+    if (file.is_open())
+    {
+        std::string name, description, asigned_coordinator, asigned_rcoordinator;
+        Date start_date, end_date;
+        bool availability;
+        int available_places, max_places;
+		Resources resources;
+
+        std::list<Ext_Course>::iterator it;
+        for (it = courses.begin(); it != courses.end(); ++it)
+        {
+
+            name = it->get_name();
+            description = it->get_description();
+            asigned_coordinator = it->get_asigned_coordinator();
+            asigned_rcoordinator = it->get_asigned_rcoordinator();
+            start_date = it->get_start_date();
+            end_date = it->get_end_date();
+            availability = it->get_availability();
+            available_places = it->get_available_places();
+            max_places = it->get_max_places();
+
+            file << name << std::endl
+                 << username << " " << email << " " << password << " " << user_type << std::endl;
+        }
+
+        file.close();
+    }
+    else
+    {
+        std::cout << "Unable to open file" << std::endl;
+    }
 }
 
 User log_in(std::list<User> users)
